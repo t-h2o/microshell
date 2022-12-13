@@ -1,11 +1,124 @@
-= Title
+= Microshell
 
-[plantuml, target=schema, format=svg, width=50%]
+== Main
+
+[plantuml, target=main, format=svg, width=100%]
 ....
 @startuml
 skinparam defaultFontName JetBrains Mono ExtraBold
 
-cloud cloud
+note left
+  int main(int argc, char *argv[], char *env[]);
+end note
+start
+:Increase of 1 argv;
+:microshell;
+stop
+
+@enduml
+....
+
+=== Microshell
+
+[plantuml, target=microshell, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono ExtraBold
+
+note left
+  int microshell(char *argv[], char *env[]);
+end note
+start
+
+while (*argv != 0?) is (has argument(s))
+  :find the command;
+  switch (separator ?)
+  case (";")
+    :no pipe;
+  case ("|")
+    :pipe;
+  endswitch
+  :execute the command;
+endwhile (No more argument)
+
+stop
+
+@enduml
+....
+
+=== Find the command
+
+[plantuml, target=find-the-command, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono ExtraBold
+
+start
+
+while (*argv != 0?) is (has argument(s))
+  switch (argument ?)
+  case (";")
+    :argv[i] = 0;
+    :Return 1;;
+    stop
+  case ("|")
+    :argv[i] = 0;
+    :Return 2;;
+    stop
+  case (argv == 0)
+    :Return 3;;
+    stop
+  case (other)
+  endswitch
+endwhile (No more argument)
+
+stop
+
+@enduml
+....
+
+=== Pipe
+
+[plantuml, target=pipe, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono ExtraBold
+
+start
+
+:Init a pipe;
+:pid = fork();;
+fork
+note left
+  if pid != 0
+  Parent process
+end note
+  :close the output;
+note left
+  fd[1]
+end note
+  :waitpid(pid, 0, 0);;
+fork again
+note left
+  if pid == 0
+  Child process
+end note
+  :close the input;
+note left
+  fd[0]
+end note
+  :execute the command;
+  if (execution OK ?) then (yes)
+    stop
+    note left
+      Child process died
+    end note
+  else (fail)
+    :return 1;;
+  endif
+end fork
+
+stop
 
 @enduml
 ....

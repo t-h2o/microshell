@@ -1,3 +1,32 @@
-= Title site
+= Examen 04
+:nofooter:
 
-image::assets/schema.svg[schema]
+____
+Microshell
+____
+
+== Usage
+
+* You have to use the absolute path
+* You can only use `;` (command separtor) or `|` (pipe)
+
+[source,bash]
+----
+./micro /bin/ls ";" /bin/ls -la
+----
+
+== main
+
+image::assets/main.svg[schema]
+
+== microshell
+
+image::assets/microshell.svg[schema]
+
+== find the command
+
+image::assets/find-the-command.svg[schema]
+
+== pipe
+
+image::assets/pipe.svg[schema]
