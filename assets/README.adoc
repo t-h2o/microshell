@@ -1,0 +1,11 @@
+= Title
+
+[plantuml, target=schema, format=svg, width=50%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono ExtraBold
+
+cloud cloud
+
+@enduml
+....
