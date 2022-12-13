@@ -1,12 +1,19 @@
 #include	<stdio.h>
 #include	<string.h>
 #include	<unistd.h>
+#include	<stdlib.h>
 #include	<sys/wait.h>
 
 typedef struct s_command {
 	char	*bin;
 	char	**args;
 }	t_command;
+
+static void	print_error(char *error)
+{
+	while (*error)
+		write(2, error++, 1);
+}
 
 static void	print_command(t_command *cmd)
 {
@@ -30,7 +37,10 @@ static int	execute_command(t_command *cmd, char **envp)
 	if (pid == 0)
 	{
 		if (execve(cmd->bin, cmd->args, envp) == -1)
-			printf("error\n");
+		{
+			print_error("microshell: Error execve\n");
+			exit(1);
+		}
 	}
 	else
 		waitpid(pid, 0, 0);
@@ -38,24 +48,32 @@ static int	execute_command(t_command *cmd, char **envp)
 	return 0;
 }
 
-static void	find_command(char ***arguments, t_command *cmd)
+static void	init_pipe(void)
+{
+	printf("init pipe\n");
+}
+
+static int	find_command(char ***arguments, t_command *cmd)
 {
 	int	index;
+	int	ret;
 
+	ret = 0;
 	cmd->bin = **arguments;
 	cmd->args = *arguments;
 	index = 0;
-	while ((*arguments)[index] && strcmp((*arguments)[index], ";"))
+	while ((*arguments)[index] && strcmp((*arguments)[index], ";") && strcmp((*arguments)[index], "|"))
 		++index;
 	if ((*arguments)[index] == 0)
 	{
 		*arguments = &((*arguments)[index]);
+		return ret;
 	}
-	else
-	{
-		(*arguments)[index] = 0;
-		*arguments = &((*arguments)[index + 1]);
-	}
+	if (!strcmp((*arguments)[index], "|"))
+		ret = 1;
+	(*arguments)[index] = 0;
+	*arguments = &((*arguments)[index + 1]);
+	return ret;
 }
 
 static int	microshell(char **arguments, char **envp)
@@ -64,7 +82,8 @@ static int	microshell(char **arguments, char **envp)
 
 	while (*arguments)
 	{
-		find_command(&arguments, &cmd);
+		if (find_command(&arguments, &cmd))
+			init_pipe();
 		print_command(&cmd);
 		execute_command(&cmd, envp);
 	}
