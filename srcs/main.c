@@ -1,5 +1,7 @@
 #include	<stdio.h>
 #include	<string.h>
+#include	<unistd.h>
+#include	<sys/wait.h>
 
 typedef struct s_command {
 	char	*bin;
@@ -17,6 +19,23 @@ static void	print_command(t_command *cmd)
 		printf("args[%d]: %s\n", index, cmd->args[index]);
 		++index;
 	}
+}
+
+static int	execute_command(t_command *cmd, char **envp)
+{
+	int	pid;
+
+	pid = fork();
+
+	if (pid == 0)
+	{
+		if (execve(cmd->bin, cmd->args, envp) == -1)
+			printf("error\n");
+	}
+	else
+		waitpid(pid, 0, 0);
+
+	return 0;
 }
 
 static void	find_command(char ***arguments, t_command *cmd)
@@ -39,7 +58,7 @@ static void	find_command(char ***arguments, t_command *cmd)
 	}
 }
 
-static int	microshell(char **arguments)
+static int	microshell(char **arguments, char **envp)
 {
 	t_command	cmd;
 
@@ -47,19 +66,20 @@ static int	microshell(char **arguments)
 	{
 		find_command(&arguments, &cmd);
 		print_command(&cmd);
+		execute_command(&cmd, envp);
 	}
 
 	return 0;
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **envp)
 {
 	printf("Microshell\n");
 
 	if (argc == 1)
 		return 0;
 
-	++ argv;
+	++argv;
 
-	return microshell(argv);
+	return microshell(argv, envp);
 }
