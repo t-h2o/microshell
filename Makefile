@@ -1,3 +1,14 @@
+NAME	=	microshell
+
+CFLAGS	+=	-Wall
+CFLAGS	+=	-Wextra
+CFLAGS	+=	-Werror
+
+SRCS	=	srcs/main.c
+
+all:
+	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+
 site/index.html: diagram
 	mkdir -p site/assets
 	cp assets/*.svg site/assets/
