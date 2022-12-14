@@ -7,6 +7,7 @@
 typedef struct s_command {
 	char	*bin;
 	char	**args;
+	int		isPipe;
 }	t_command;
 
 static void	print_error(char *error)
@@ -57,17 +58,17 @@ static int	cd_command(t_command *cmd)
 	return 0;
 }
 
-static void	init_pipe(void)
+static void	init_pipe(t_command *cmd)
 {
+	if (!(cmd->isPipe))
+		return ;
 	printf("init pipe\n");
 }
 
-static int	find_command(char ***arguments, t_command *cmd)
+static void	find_command(char ***arguments, t_command *cmd)
 {
 	int	index;
-	int	ret;
 
-	ret = 0;
 	cmd->bin = **arguments;
 	cmd->args = *arguments;
 	index = 0;
@@ -76,13 +77,12 @@ static int	find_command(char ***arguments, t_command *cmd)
 	if ((*arguments)[index] == 0)
 	{
 		*arguments = &((*arguments)[index]);
-		return ret;
+		return ;
 	}
 	if (!strcmp((*arguments)[index], "|"))
-		ret = 1;
+		cmd->isPipe = 1;
 	(*arguments)[index] = 0;
 	*arguments = &((*arguments)[index + 1]);
-	return ret;
 }
 
 static int	microshell(char **arguments, char **envp)
@@ -91,8 +91,9 @@ static int	microshell(char **arguments, char **envp)
 
 	while (*arguments)
 	{
-		if (find_command(&arguments, &cmd))
-			init_pipe();
+		cmd.isPipe = 0;
+		find_command(&arguments, &cmd);
+		init_pipe(&cmd);
 		print_command(&cmd);
 		if (cd_command(&cmd))
 			execute_command(&cmd, envp);
