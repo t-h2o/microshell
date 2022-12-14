@@ -8,6 +8,7 @@ typedef struct s_command {
 	char	*bin;
 	char	**args;
 	int		isPipe;
+	int		fd[2];
 }	t_command;
 
 static void	print_error(char *error)
@@ -37,6 +38,12 @@ static int	execute_command(t_command *cmd, char **envp)
 
 	if (pid == 0)
 	{
+		if (cmd->isPipe)
+		{
+			dup2(cmd->fd[1], 1);
+			close(cmd->fd[1]);
+			close(cmd->fd[0]);
+		}
 		if (execve(cmd->bin, cmd->args, envp) == -1)
 		{
 			print_error("microshell: Error execve\n");
@@ -44,7 +51,15 @@ static int	execute_command(t_command *cmd, char **envp)
 		}
 	}
 	else
+	{
+		if (cmd->isPipe)
+		{
+			dup2(cmd->fd[0], 0);
+			close(cmd->fd[0]);
+			close(cmd->fd[1]);
+		}
 		waitpid(pid, 0, 0);
+	}
 
 	return 0;
 }
@@ -63,6 +78,11 @@ static void	init_pipe(t_command *cmd)
 	if (!(cmd->isPipe))
 		return ;
 	printf("init pipe\n");
+	if (pipe(cmd->fd) == -1)
+	{
+		print_error("microshell: error: pipe\n");
+		exit(1);
+	}
 }
 
 static void	find_command(char ***arguments, t_command *cmd)
