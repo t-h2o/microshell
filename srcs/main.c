@@ -89,8 +89,6 @@ static void	find_command(char ***arguments, t_command *cmd)
 {
 	int	index;
 
-	cmd->bin = **arguments;
-	cmd->args = *arguments;
 	index = 0;
 	while ((*arguments)[index] && strcmp((*arguments)[index], ";") && strcmp((*arguments)[index], "|"))
 		++index;
@@ -112,6 +110,8 @@ static int	microshell(char **arguments, char **envp)
 	while (*arguments)
 	{
 		cmd.isPipe = 0;
+		cmd.bin = *arguments;
+		cmd.args = arguments;
 		find_command(&arguments, &cmd);
 		init_pipe(&cmd);
 		print_command(&cmd);
