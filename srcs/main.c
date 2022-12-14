@@ -64,7 +64,6 @@ static void	init_pipe(t_command *cmd)
 {
 	if (!(cmd->isPipe))
 		return ;
-	printf("init pipe\n");
 	if (pipe(cmd->fd) == -1)
 	{
 		print_error("microshell: error: pipe\n");
@@ -110,8 +109,6 @@ static int	microshell(char **arguments, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	printf("Microshell\n");
-
 	if (argc == 1)
 		return 0;
 
