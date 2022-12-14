@@ -17,19 +17,6 @@ static void	print_error(char *error)
 		write(2, error++, 1);
 }
 
-static void	print_command(t_command *cmd)
-{
-	int	index;
-
-	printf("Bin: %s\n", cmd->bin);
-	index = 0;
-	while (cmd->args[index])
-	{
-		printf("args[%d]: %s\n", index, cmd->args[index]);
-		++index;
-	}
-}
-
 static int	execute_command(t_command *cmd, char **envp)
 {
 	int	pid;
@@ -114,7 +101,6 @@ static int	microshell(char **arguments, char **envp)
 		cmd.args = arguments;
 		find_command(&arguments, &cmd);
 		init_pipe(&cmd);
-		print_command(&cmd);
 		if (cd_command(&cmd))
 			execute_command(&cmd, envp);
 	}
