@@ -48,6 +48,15 @@ static int	execute_command(t_command *cmd, char **envp)
 	return 0;
 }
 
+static int	cd_command(t_command *cmd)
+{
+	if (strcmp(cmd->bin, "cd") || !(cmd->args[1]) || (cmd->args[2]))
+		return 1;
+	if (chdir(cmd->args[1]) == -1)
+		print_error("microshell: error: cd\n");
+	return 0;
+}
+
 static void	init_pipe(void)
 {
 	printf("init pipe\n");
@@ -85,7 +94,8 @@ static int	microshell(char **arguments, char **envp)
 		if (find_command(&arguments, &cmd))
 			init_pipe();
 		print_command(&cmd);
-		execute_command(&cmd, envp);
+		if (cd_command(&cmd))
+			execute_command(&cmd, envp);
 	}
 
 	return 0;
