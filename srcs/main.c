@@ -94,7 +94,7 @@ static void	find_command(char ***arguments, t_command *cmd)
 		++index;
 	if ((*arguments)[index] == 0)
 	{
-		*arguments = &((*arguments)[index]);
+		**arguments = 0;
 		return ;
 	}
 	if (!strcmp((*arguments)[index], "|"))
