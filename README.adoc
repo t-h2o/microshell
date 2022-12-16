@@ -19,7 +19,7 @@ ____
 
 image::assets/main.svg[schema]
 
-[souce, c]
+[source, c]
 ----
 int	main(int argc, char **argv, char **envp)
 {
