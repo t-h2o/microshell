@@ -19,6 +19,19 @@ ____
 
 image::assets/main.svg[schema]
 
+[souce, c]
+----
+int	main(int argc, char **argv, char **envp)
+{
+	if (argc == 1)
+		return 0;
+
+	++argv;
+
+	return microshell(argv, envp);
+}
+----
+
 == microshell
 
 image::assets/microshell.svg[schema]
