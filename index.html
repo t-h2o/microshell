@@ -482,7 +482,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>int	main(int argc, char **argv, char **envp)
+<pre class="highlight"><code class="language-c" data-lang="c">int	main(int argc, char **argv, char **envp)
 {
 	if (argc == 1)
 		return 0;
@@ -490,7 +490,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 	++argv;
 
 	return microshell(argv, envp);
-}</pre>
+}</code></pre>
 </div>
 </div>
 </div>
@@ -501,6 +501,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="imageblock">
 <div class="content">
 <img src="assets/microshell.svg" alt="schema">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">static int	microshell(char **arguments, char **envp)
+{
+	t_command	cmd;
+
+	while (*arguments)
+	{
+		cmd.isPipe = 0;
+		cmd.bin = *arguments;
+		cmd.args = arguments;
+		find_command(&amp;arguments, &amp;cmd);
+		init_pipe(&amp;cmd);
+		if (cd_command(&amp;cmd))
+			execute_command(&amp;cmd, envp);
+	}
+
+	return 0;
+}</code></pre>
 </div>
 </div>
 </div>
