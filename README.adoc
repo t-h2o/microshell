@@ -61,6 +61,41 @@ static int	microshell(char **arguments, char **envp)
 
 image::assets/find-the-command.svg[schema]
 
-== pipe
+== Execution
 
 image::assets/pipe.svg[schema]
+
+[source,c]
+----
+static void	execute_command(t_command *cmd, char **envp)
+{
+	int	pid;
+
+	pid = fork();
+
+	if (pid == 0)
+	{
+		if (cmd->isPipe)
+		{
+			dup2(cmd->fd[1], 1);
+			close(cmd->fd[1]);
+			close(cmd->fd[0]);
+		}
+		if (execve(cmd->bin, cmd->args, envp) == -1)
+		{
+			print_error("microshell: Error execve\n");
+			exit(1);
+		}
+	}
+	else
+	{
+		if (cmd->isPipe)
+		{
+			dup2(cmd->fd[0], 0);
+			close(cmd->fd[0]);
+			close(cmd->fd[1]);
+		}
+		waitpid(pid, 0, 0);
+	}
+}
+----
