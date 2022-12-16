@@ -480,6 +480,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <img src="assets/main.svg" alt="schema">
 </div>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>int	main(int argc, char **argv, char **envp)
+{
+	if (argc == 1)
+		return 0;
+
+	++argv;
+
+	return microshell(argv, envp);
+}</pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
