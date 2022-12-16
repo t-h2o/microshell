@@ -93,20 +93,24 @@ note left
   if pid != 0
   Parent process
 end note
-  :close the output;
-note left
-  fd[1]
-end note
+  if (is pipe ?) then (yes)
+    :dup2(pipe[0], 0);;
+    :close(pipe[0]);;
+    :close(pipe[1]);;
+  else (no)
+  endif
   :waitpid(pid, 0, 0);;
 fork again
 note left
   if pid == 0
   Child process
 end note
-  :close the input;
-note left
-  fd[0]
-end note
+  if (is pipe ?) then (yes)
+    :dup2(pipe[1], 1);;
+    :close(pipe[1]);;
+    :close(pipe[0]);;
+  else (no)
+  endif
   :execute the command;
   if (execution OK ?) then (yes)
     stop
@@ -114,7 +118,12 @@ end note
       Child process died
     end note
   else (fail)
-    :return 1;;
+    :print error execve;
+    :exit (1);;
+    stop
+    note left
+      Child process died
+    end note
   endif
 end fork
 
