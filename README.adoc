@@ -36,6 +36,27 @@ int	main(int argc, char **argv, char **envp)
 
 image::assets/microshell.svg[schema]
 
+[source, c]
+----
+static int	microshell(char **arguments, char **envp)
+{
+	t_command	cmd;
+
+	while (*arguments)
+	{
+		cmd.isPipe = 0;
+		cmd.bin = *arguments;
+		cmd.args = arguments;
+		find_command(&arguments, &cmd);
+		init_pipe(&cmd);
+		if (cd_command(&cmd))
+			execute_command(&cmd, envp);
+	}
+
+	return 0;
+}
+----
+
 == find the command
 
 image::assets/find-the-command.svg[schema]
