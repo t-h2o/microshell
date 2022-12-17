@@ -112,7 +112,7 @@ end note
   else (no)
   endif
   :execute the command;
-  if (execution OK ?) then (yes)
+  if (execution OK ?) then (success)
     stop
     note left
       Child process died
