@@ -1,5 +1,6 @@
 = Examen 04
 :nofooter:
+:source-highlighter: highlight.js
 
 ____
 Microshell

@@ -435,6 +435,221 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sa {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
 </head>
 <body class="article">
 <div id="header">
@@ -467,7 +682,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">./micro /bin/ls ";" /bin/ls -la</code></pre>
+<pre class="rouge highlight"><code data-lang="bash">./micro /bin/ls <span class="s2">";"</span> /bin/ls <span class="nt">-la</span></code></pre>
 </div>
 </div>
 </div>
@@ -482,15 +697,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">int	main(int argc, char **argv, char **envp)
-{
-	if (argc == 1)
-		return 0;
+<pre class="rouge highlight"><code data-lang="c"><span class="kt">int</span>	<span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+		<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 
-	++argv;
+	<span class="o">++</span><span class="n">argv</span><span class="p">;</span>
 
-	return microshell(argv, envp);
-}</code></pre>
+	<span class="k">return</span> <span class="n">microshell</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span> <span class="n">envp</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -505,23 +720,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-c" data-lang="c">static int	microshell(char **arguments, char **envp)
-{
-	t_command	cmd;
+<pre class="rouge highlight"><code data-lang="c"><span class="k">static</span> <span class="kt">int</span>	<span class="nf">microshell</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">arguments</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">t_command</span>	<span class="n">cmd</span><span class="p">;</span>
 
-	while (*arguments)
-	{
-		cmd.isPipe = 0;
-		cmd.bin = *arguments;
-		cmd.args = arguments;
-		find_command(&amp;arguments, &amp;cmd);
-		init_pipe(&amp;cmd);
-		if (cd_command(&amp;cmd))
-			execute_command(&amp;cmd, envp);
-	}
+	<span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cmd</span><span class="p">.</span><span class="n">isPipe</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="n">cmd</span><span class="p">.</span><span class="n">bin</span> <span class="o">=</span> <span class="o">*</span><span class="n">arguments</span><span class="p">;</span>
+		<span class="n">cmd</span><span class="p">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">arguments</span><span class="p">;</span>
+		<span class="n">find_command</span><span class="p">(</span><span class="o">&amp;</span><span class="n">arguments</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">cmd</span><span class="p">);</span>
+		<span class="n">init_pipe</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cmd</span><span class="p">);</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">cd_command</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cmd</span><span class="p">))</span>
+			<span class="n">execute_command</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cmd</span><span class="p">,</span> <span class="n">envp</span><span class="p">);</span>
+	<span class="p">}</span>
 
-	return 0;
-}</code></pre>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -537,11 +752,46 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pipe">pipe</h2>
+<h2 id="_execution">Execution</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
 <img src="assets/pipe.svg" alt="schema">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="c"><span class="k">static</span> <span class="kt">void</span>	<span class="nf">execute_command</span><span class="p">(</span><span class="n">t_command</span> <span class="o">*</span><span class="n">cmd</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">envp</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">int</span>	<span class="n">pid</span><span class="p">;</span>
+
+	<span class="n">pid</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">cmd</span><span class="o">-&gt;</span><span class="n">isPipe</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">dup2</span><span class="p">(</span><span class="n">cmd</span><span class="o">-&gt;</span><span class="n">fd</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">);</span>
+			<span class="n">close</span><span class="p">(</span><span class="n">cmd</span><span class="o">-&gt;</span><span class="n">fd</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+			<span class="n">close</span><span class="p">(</span><span class="n">cmd</span><span class="o">-&gt;</span><span class="n">fd</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+		<span class="p">}</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">execve</span><span class="p">(</span><span class="n">cmd</span><span class="o">-&gt;</span><span class="n">bin</span><span class="p">,</span> <span class="n">cmd</span><span class="o">-&gt;</span><span class="n">args</span><span class="p">,</span> <span class="n">envp</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">print_error</span><span class="p">(</span><span class="s">"microshell: Error execve</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+			<span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">else</span>
+	<span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">cmd</span><span class="o">-&gt;</span><span class="n">isPipe</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="n">dup2</span><span class="p">(</span><span class="n">cmd</span><span class="o">-&gt;</span><span class="n">fd</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">);</span>
+			<span class="n">close</span><span class="p">(</span><span class="n">cmd</span><span class="o">-&gt;</span><span class="n">fd</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+			<span class="n">close</span><span class="p">(</span><span class="n">cmd</span><span class="o">-&gt;</span><span class="n">fd</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+		<span class="p">}</span>
+		<span class="n">waitpid</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
