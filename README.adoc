@@ -88,6 +88,22 @@ static void	find_command(char ***arguments, t_command *cmd)
 }
 ----
 
+== Init pipe
+
+[source, c]
+----
+static void	init_pipe(t_command *cmd)
+{
+	if (!(cmd->isPipe))
+		return ;
+	if (pipe(cmd->fd) == -1)
+	{
+		print_error("microshell: error: pipe\n");
+		exit(1);
+	}
+}
+----
+
 == Execution
 
 image::assets/pipe.svg[schema]

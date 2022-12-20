@@ -448,7 +448,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_main">2. main</a></li>
 <li><a href="#_microshell">3. microshell</a></li>
 <li><a href="#_find_the_command">4. find the command</a></li>
-<li><a href="#_execution">5. Execution</a></li>
+<li><a href="#_init_pipe">5. Init pipe</a></li>
+<li><a href="#_execution">6. Execution</a></li>
 </ul>
 </div>
 </div>
@@ -572,7 +573,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_execution">5. Execution</h2>
+<h2 id="_init_pipe">5. Init pipe</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">static void	init_pipe(t_command *cmd)
+{
+	if (!(cmd-&gt;isPipe))
+		return ;
+	if (pipe(cmd-&gt;fd) == -1)
+	{
+		print_error("microshell: error: pipe\n");
+		exit(1);
+	}
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_execution">6. Execution</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
