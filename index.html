@@ -535,6 +535,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <img src="assets/find-the-command.svg" alt="schema">
 </div>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">static void	find_command(char ***arguments, t_command *cmd)
+{
+	int	index;
+
+	index = 0;
+	while ((*arguments)[index] &amp;&amp; strcmp((*arguments)[index], ";") &amp;&amp; strcmp((*arguments)[index], "|"))
+		++index;
+	if ((*arguments)[index] == 0)
+	{
+		*arguments = &amp;((*arguments)[index]);
+		return ;
+	}
+	if (!strcmp((*arguments)[index], "|"))
+		cmd-&gt;isPipe = 1;
+	(*arguments)[index] = 0;
+	*arguments = &amp;((*arguments)[index + 1]);
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">

@@ -62,6 +62,27 @@ static int	microshell(char **arguments, char **envp)
 
 image::assets/find-the-command.svg[schema]
 
+[source, c]
+----
+static void	find_command(char ***arguments, t_command *cmd)
+{
+	int	index;
+
+	index = 0;
+	while ((*arguments)[index] && strcmp((*arguments)[index], ";") && strcmp((*arguments)[index], "|"))
+		++index;
+	if ((*arguments)[index] == 0)
+	{
+		*arguments = &((*arguments)[index]);
+		return ;
+	}
+	if (!strcmp((*arguments)[index], "|"))
+		cmd->isPipe = 1;
+	(*arguments)[index] = 0;
+	*arguments = &((*arguments)[index + 1]);
+}
+----
+
 == Execution
 
 image::assets/pipe.svg[schema]
