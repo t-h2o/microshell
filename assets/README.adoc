@@ -5,7 +5,7 @@
 [plantuml, target=main, format=svg, width=100%]
 ....
 @startuml
-skinparam defaultFontName JetBrains Mono ExtraBold
+skinparam defaultFontName JetBrains Mono
 
 note left
   int main(int argc, char *argv[], char *env[]);
@@ -23,7 +23,7 @@ stop
 [plantuml, target=microshell, format=svg, width=100%]
 ....
 @startuml
-skinparam defaultFontName JetBrains Mono ExtraBold
+skinparam defaultFontName JetBrains Mono
 
 note left
   int microshell(char *argv[], char *env[]);
@@ -51,7 +51,7 @@ stop
 [plantuml, target=find-the-command, format=svg, width=100%]
 ....
 @startuml
-skinparam defaultFontName JetBrains Mono ExtraBold
+skinparam defaultFontName JetBrains Mono
 
 start
 
@@ -82,7 +82,7 @@ stop
 [plantuml, target=pipe, format=svg, width=100%]
 ....
 @startuml
-skinparam defaultFontName JetBrains Mono ExtraBold
+skinparam defaultFontName JetBrains Mono
 
 start
 
