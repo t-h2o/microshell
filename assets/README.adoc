@@ -32,15 +32,15 @@ start
 
 while (*argv != 0?) is (has argument(s))
   :find the command;
-  switch (separator ?)
-  case (";")
-    :no pipe;
-  case ("|")
-    :pipe;
-  endswitch
-  :execute the command;
+  :init pipe;
+  if (is a cd command) then (yes)
+    :change directory;
+  else (no)
+    :execute the command;
+  endif
 endwhile (No more argument)
 
+:return 0;;
 stop
 
 @enduml
