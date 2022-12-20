@@ -1,5 +1,6 @@
 = Examen 04
 :nofooter:
+:toc: left
 :source-highlighter: highlight.js
 :stylesheet: assets/my-stylesheet.css
 
