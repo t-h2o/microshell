@@ -55,22 +55,22 @@ skinparam defaultFontName JetBrains Mono
 
 start
 
-while (*argv != 0?) is (has argument(s))
-  switch (argument ?)
-  case (";")
-    :argv[i] = 0;
-    :Return 1;;
-    stop
-  case ("|")
-    :argv[i] = 0;
-    :Return 2;;
-    stop
-  case (argv == 0)
-    :Return 3;;
-    stop
-  case (other)
-  endswitch
-endwhile (No more argument)
+while ((*argv)[index] != 0\nAND (*argv)[index] != ";"\nAND (*argv)[index] != "|") is (has argument(s))
+  :index++;;
+endwhile
+if ((*argv)[index]) then (is equal NULL)
+  :*arguments = &((*arguments)[index]);;
+  :return;;
+  stop
+endif
+
+if ((*argv)[index]) then (is equal\n"|")
+  :isPipe = 1;;
+else (is not equal "|")
+endif
+
+:(*arguments)[index] = 0;;
+:*arguments = &((*arguments)[index + 1]);;
 
 stop
 
