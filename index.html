@@ -542,7 +542,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 	int	index;
 
 	index = 0;
-	while ((*arguments)[index] &amp;&amp; strcmp((*arguments)[index], ";") &amp;&amp; strcmp((*arguments)[index], "|"))
+	while ((*arguments)[index]
+		&amp;&amp; strcmp((*arguments)[index], ";")
+		&amp;&amp; strcmp((*arguments)[index], "|"))
 		++index;
 	if ((*arguments)[index] == 0)
 	{

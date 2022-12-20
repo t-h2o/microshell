@@ -76,7 +76,9 @@ static void	find_command(char ***arguments, t_command *cmd)
 	int	index;
 
 	index = 0;
-	while ((*arguments)[index] && strcmp((*arguments)[index], ";") && strcmp((*arguments)[index], "|"))
+	while ((*arguments)[index]
+		&& strcmp((*arguments)[index], ";")
+		&& strcmp((*arguments)[index], "|"))
 		++index;
 	if ((*arguments)[index] == 0)
 	{
