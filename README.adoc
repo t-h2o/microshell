@@ -1,6 +1,7 @@
 = Examen 04
 :nofooter:
 :source-highlighter: highlight.js
+:stylesheet: assets/my-stylesheet.css
 
 ____
 Microshell
