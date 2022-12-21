@@ -77,6 +77,33 @@ stop
 @enduml
 ....
 
+=== Init pipe
+
+[plantuml, target=pipe, format=svg, width=100%]
+....
+@startuml
+skinparam defaultFontName JetBrains Mono
+
+start
+
+if (is pipe) then (no)
+  :return ;;
+  stop
+else (yes)
+endif
+
+:Init a pipe;
+if (pipe failed) then (yes)
+  :print error;
+  :exit(1);;
+  stop
+else (no)
+endif
+stop
+
+@enduml
+....
+
 === Execution
 
 [plantuml, target=execution, format=svg, width=100%]

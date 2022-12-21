@@ -90,6 +90,8 @@ static void	find_command(char ***arguments, t_command *cmd)
 
 == Init pipe
 
+image::assets/pipe.svg[schema]
+
 [source, c]
 ----
 static void	init_pipe(t_command *cmd)
