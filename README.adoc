@@ -106,7 +106,7 @@ static void	init_pipe(t_command *cmd)
 
 == Execution
 
-image::assets/pipe.svg[schema]
+image::assets/execution.svg[schema]
 
 [source,c]
 ----

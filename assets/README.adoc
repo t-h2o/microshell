@@ -77,9 +77,9 @@ stop
 @enduml
 ....
 
-=== Pipe
+=== Execution
 
-[plantuml, target=pipe, format=svg, width=100%]
+[plantuml, target=execution, format=svg, width=100%]
 ....
 @startuml
 skinparam defaultFontName JetBrains Mono
