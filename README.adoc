@@ -5,6 +5,8 @@
 :source-highlighter: highlight.js
 :stylesheet: assets/my-stylesheet.css
 
+The repository: https://github.com/t-h2o/microshell[t-h2o/microshell]
+
 ____
 Microshell
 ____
